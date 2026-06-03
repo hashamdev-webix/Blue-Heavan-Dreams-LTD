@@ -14,7 +14,7 @@ import ServiceCard from "../components/ServiceCard";
 import IconBox from "../components/IconBox";
 import ProcessStep from "../components/ProcessStep";
 import CTASection from "../components/CTASection";
-import { services, clients, process, company } from "../data/siteData";
+import { services, clients, process } from "../data/siteData";
 import { serviceIcons, clientIcons, fallbackIcon } from "../data/icons";
 
 const trustItems = [

@@ -9,6 +9,7 @@ import {
   HeartHandshake,
 } from "lucide-react";
 import Reveal from "../components/Reveal";
+import MediaFrame from "../components/MediaFrame";
 import SectionHeading from "../components/SectionHeading";
 import ServiceCard from "../components/ServiceCard";
 import IconBox from "../components/IconBox";
@@ -116,11 +117,7 @@ export default function Home() {
       {/* ABOUT INTRO */}
       <section className="section grid items-center gap-12 lg:grid-cols-2">
         <Reveal>
-          <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-offwhite text-center">
-            <span className="px-6 text-sm font-medium text-steel">
-              [ Construction planning / homeowner consultation image ]
-            </span>
-          </div>
+          <MediaFrame name="about-intro" label="Construction planning / homeowner consultation" />
         </Reveal>
         <div>
           <p className="section-label">About Blue Haven Dreams Ltd.</p>

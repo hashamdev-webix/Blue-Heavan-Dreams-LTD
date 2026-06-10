@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import {
   MapPin,
   Mail,
@@ -122,15 +123,10 @@ export default function Contact() {
   const update = (field: string, value: string | boolean) =>
     setForm((f) => ({ ...f, [field]: value }));
 
-  const handleSubmit = () => {
-    if (
-      !form.firstName ||
-      !form.lastName ||
-      !form.email ||
-      !form.phone ||
-      !form.service ||
-      !form.message
-    ) {
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!form.firstName || !form.lastName || !form.email || !form.phone || !form.service || !form.message) {
       setError("Please fill in all required fields marked with *.");
       return;
     }
@@ -139,8 +135,33 @@ export default function Contact() {
       return;
     }
     setError("");
-    console.log("Contact form submission:", form);
-    setSubmitted(true);
+    setSending(true);
+    try {
+      await emailjs.send(
+        "service_g8bqrlf",
+        "template_9nmmp2i",
+        {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          address: form.address || "Not provided",
+          city: form.city || "Not provided",
+          service: form.service,
+          projectType: form.projectType || "Not provided",
+          timeline: form.timeline || "Not provided",
+          budget: form.budget || "Not provided",
+          message: form.message,
+        },
+        { publicKey: "wPSrfcun9p5e6aSmd" }
+      );
+      setSubmitted(true);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setError("Something went wrong while sending your message. Please try again or email us directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClass =
@@ -333,9 +354,7 @@ export default function Contact() {
                   {error && (
                     <p className="text-sm font-medium text-red-600">{error}</p>
                   )}
-                  <button onClick={handleSubmit} className="btn-primary w-full">
-                    Submit Request
-                  </button>
+                  <button onClick={handleSubmit} disabled={sending} className="btn-primary w-full disabled:opacity-60">{sending ? "Sending..." : "Submit Request"}</button>
                 </div>
               )}
             </div>

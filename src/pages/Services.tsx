@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
 import CTASection from "../components/CTASection";
 import Reveal from "../components/Reveal";
+import MediaFrame from "../components/MediaFrame";
 import { services } from "../data/siteData";
 import { serviceIcons, fallbackIcon } from "../data/icons";
 
@@ -47,16 +48,7 @@ export default function Services() {
             >
               <div className="section grid items-center gap-12 lg:grid-cols-2">
                 <Reveal className={reversed ? "lg:order-2" : ""}>
-                  <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-navy-dark/5 text-center">
-                    <div className="px-6">
-                      <span className="mx-auto mb-3 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-navy text-green">
-                        <Icon size={32} />
-                      </span>
-                      <p className="text-sm font-medium text-steel">
-                        [ {s.title} project image ]
-                      </p>
-                    </div>
-                  </div>
+                  <MediaFrame name={`service-${s.slug}`} label={`${s.title} project image`} />
                 </Reveal>
                 <div className={reversed ? "lg:order-1" : ""}>
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-offwhite text-navy">

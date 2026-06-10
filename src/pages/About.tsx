@@ -18,6 +18,7 @@ import ProcessStep from "../components/ProcessStep";
 import FaqItem from "../components/FaqItem";
 import CTASection from "../components/CTASection";
 import Reveal from "../components/Reveal";
+import MediaFrame from "../components/MediaFrame";
 import { services } from "../data/siteData";
 
 const coreValues = [
@@ -140,12 +141,7 @@ export default function About() {
       {/* WHO WE ARE */}
       <section className="section grid items-center gap-12 lg:grid-cols-2">
         <Reveal>
-          <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-offwhite text-center">
-            <span className="px-6 text-sm font-medium text-steel">
-              [ Construction planning meeting / residential project coordination
-              ]
-            </span>
-          </div>
+          <MediaFrame name="about-team" label="Construction planning meeting / residential project coordination" />
         </Reveal>
         <div>
           <p className="section-label">Who We Are</p>
